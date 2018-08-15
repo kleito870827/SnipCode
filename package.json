@@ -28,6 +28,7 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
+    "uuid": "^3.3.2",
     "validator": "^9.0.0",
     "webpack": "^3.7.1",
     "webpack-dev-server": "^2.9.2"
