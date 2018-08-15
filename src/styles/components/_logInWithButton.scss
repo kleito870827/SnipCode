@@ -1,0 +1,19 @@
+.logInWithButton{
+  text-align: center;
+  margin-bottom: 30px;
+  button{
+    color: #fff;
+    font-size: 2rem;
+    padding: 5px;
+    cursor: pointer;
+  }
+  span{
+    padding: 5px;
+  }
+
+  &__icon{
+    border-right: 1px solid #363638;
+    margin-right: 5px;
+    // display: inline-block;
+  }
+}
