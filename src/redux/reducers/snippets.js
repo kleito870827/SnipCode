@@ -1,13 +1,36 @@
 const snippetReducerDefaultState = {
-  snippets: []
+  snippetArray: []
 };
 
 export default (state = snippetReducerDefaultState, action) => {
   switch (action.type) {
     case 'ADD_SNIP':
       return {
-        snippets: [...state.snippets, action.snippet]
+        snippetArray: [...state.snippetArray, action.snippet]
       };
+    case 'SET_SNIP':
+      return {
+          snippetArray: action.snippets
+      }
+    case 'REMOVE_SNIP':
+      const removeSnip = state.snippetArray.filter(({id}) => id !== action.id);
+      return {
+        snippetArray: removeSnip
+      }
+    case 'EDIT_SNIP':
+      const editSnip = state.snippetArray.map((snip) => {
+        if(snip.id === action.id){
+          return {
+            ...snip,
+            ...action.update
+          }
+        }else{
+          return snip;
+        }
+      })
+      return {
+        snippetArray:  editSnip
+      }
     default:
       return state;
   }
