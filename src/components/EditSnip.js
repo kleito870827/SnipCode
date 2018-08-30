@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import InputForm from './InputForm';
 import * as currentActions from '../redux/actions/currentSnippet';
 import { fbRemoveSnip, fbEditSnip } from '../redux/actions/snippets';
+import EditSnipBox from './EditSnipBox';
 
 class EditSnip extends Component {
 
@@ -44,24 +45,27 @@ class EditSnip extends Component {
       console.log('category not add');
     }
   }
+  OnClickRemoveCategory = (index) => {
+    this.props.removeCurrentSnipCategory(index);
+  }
 
   OnChangeLanguage = (e) => {
     this.props.editCurrentSnipLanguage(e.target.value);
   }
 
-  OnKeyDownLanguage = (e) => {
-    e.keyCode === 13 && this.OnClickAddLanguage();
-  }
+  // OnKeyDownLanguage = (e) => {
+  //   e.keyCode === 13 && this.OnClickAddLanguage();
+  // }
 
-  OnClickAddLanguage = () => {
-    const language = this.props.currentSnippet.currentLanguage;
-    if(language) {
-      this.props.addCurrentSnipLanguage(language);
-      this.props.editCurrentSnipLanguage('');
-    }else {
-      console.log('language not add');
-    }
-  }
+  // OnChangeLanguage = () => {
+  //   const language = this.props.currentSnippet.currentLanguage;
+  //   if(language) {
+  //     this.props.addCurrentSnipLanguage(language);
+  //     this.props.editCurrentSnipLanguage('');
+  //   }else {
+  //     console.log('language not add');
+  //   }
+  // }
 
   OnClickRemoveSnip = () => {
     // console.log(this.props.match.params.id);
@@ -79,7 +83,24 @@ class EditSnip extends Component {
     // console.log(this.props.currentSnippet.language.length);
     return (
         <div>
-          <InputForm id="title" name="Title" type="text" change={this.OnChangeTitle} value={this.props.currentSnippet.title} required />
+          <EditSnipBox
+            OnChangeTitle = {this.OnChangeTitle}
+            currentTitle = {this.props.currentSnippet.title}
+            OnChangeCode = {this.OnChangeCode}
+            currentCode = {this.props.currentSnippet.code}
+            OnChangeLanguage = {this.OnChangeLanguage}
+            currentLanguage = {this.props.currentSnippet.currentLanguage}
+            OnKeyDownCategory = {this.OnKeyDownCategory}
+            OnChangeCategory = {this.OnChangeCategory}
+            OnClickAddCategoty = {this.OnClickAddCategoty}
+            OnClickRemoveCategory = {this.OnClickRemoveCategory}
+            currentCategory = {this.props.currentSnippet.currentCategory}
+            category = {this.props.currentSnippet.category}
+            OnClickEditSnip = {this.OnClickEditSnip}
+            OnClickRemoveSnip = {this.OnClickRemoveSnip}
+            error = {this.props.error}
+          />
+          {/* <InputForm id="title" name="Title" type="text" change={this.OnChangeTitle} value={this.props.currentSnippet.title} required />
           <label htmlFor="code">Code</label>
           <textarea id="code" onChange={this.OnChangeCode} value={this.props.currentSnippet.code}></textarea>
           <InputForm id="private" name="Private" change={this.OnChangePrivacy} type="checkbox" value={this.props.currentSnippet.privacy} check={this.props.currentSnippet.privacy} />
@@ -92,17 +113,9 @@ class EditSnip extends Component {
               })}
             </ul>
           )}
-          <InputForm id="language" keyDown={this.OnKeyDownLanguage} name="Language" type="text" change={this.OnChangeLanguage} value={this.props.currentSnippet.currentLanguage} />
-          <input type="submit" onClick={this.OnClickAddLanguage} value="add language"/>
-          {this.props.currentSnippet.language && (
-            <ul>
-              {this.props.currentSnippet.language.map((e, i) => {
-                return <li key={i}>{e}</li>
-              })}
-            </ul>
-          )}
+          <InputForm id="language" name="Language" type="text" change={this.OnChangeLanguage} value={this.props.currentSnippet.language} />
           <input type="submit" onClick={this.OnClickEditSnip} value="edit Snippet" />
-          <button onClick={this.OnClickRemoveSnip}>remove</button>
+          <button onClick={this.OnClickRemoveSnip}>remove</button> */}
         </div>
     )
   }
@@ -122,8 +135,9 @@ const mapDispatchToProps = (dispatch) => ({
   editCurrentSnipPrivacy: value => dispatch(currentActions.editCurrentSnipPrivacy(value)),
   editCurrentSnipCategory: value => dispatch(currentActions.editCurrentSnipCategory(value)),
   addCurrentSnipCategory: value => dispatch(currentActions.addCurrentSnipCategory(value)),
+  removeCurrentSnipCategory: value => dispatch(currentActions.removeCurrentSnipCategory(value)),
   editCurrentSnipLanguage: value => dispatch(currentActions.editCurrentSnipLanguage(value)),
-  addCurrentSnipLanguage: value => dispatch(currentActions.addCurrentSnipLanguage(value)),
+  // addCurrentSnipLanguage: value => dispatch(currentActions.addCurrentSnipLanguage(value)),
   clearCurrentSnip: value => dispatch(currentActions.clearCurrentSnip(value)),
   fbRemoveSnip: value => dispatch(fbRemoveSnip(value)),
   fbEditSnip: (id, value) => dispatch(fbEditSnip(id, value))

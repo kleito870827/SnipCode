@@ -1,0 +1,24 @@
+.edit-snip-box {
+
+  &__edit-remove-snip{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 15px;
+
+  &__edit-snip{
+    margin-right: 30px;
+  }
+
+  &__remove-snip{
+    input[type="button"]{
+      background-color: red;
+      border: 1px solid red;
+
+      &:hover{
+        color: red;
+      }
+    }
+  }
+  }
+}

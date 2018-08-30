@@ -1,12 +1,10 @@
 const currentSnippetReducerDefaultState = {
     title: '',
     code: '',
-    date: 0,
     privacy: false,
     currentCategory: '',
     category: [],
-    currentLanguage: '',
-    language: []
+    language: '',
 }
 
 export default (state = currentSnippetReducerDefaultState, action) => {
@@ -43,16 +41,26 @@ export default (state = currentSnippetReducerDefaultState, action) => {
           ...state,
           category: state.category.concat(action.category)
         };
+      case 'REMOVE_CURRENT_SNIP_CATEGORY':
+        return {
+          ...state,
+          category: state.category.filter((e, i) => i !== action.position)
+        }
+      // case 'EDIT_CURRENT_SNIP_LANGUAGE':
+      //   return {
+      //     ...state,
+      //     currentLanguage: action.language
+      //   };
       case 'EDIT_CURRENT_SNIP_LANGUAGE':
         return {
           ...state,
-          currentLanguage: action.language
+          language: action.language
         };
-      case 'ADD_CURRENT_SNIP_LANGUAGE':
-        return {
-          ...state,
-          language: state.language.concat(action.language)
-        };
+        case 'EDIT_CURRENT_SNIP_ERROR':
+          return {
+            ...state,
+            error: action.error
+          }
     default:
       return state;
   }

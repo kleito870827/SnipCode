@@ -1,0 +1,83 @@
+.add-snip-box, .edit-snip-box{
+  background-color: #fff;
+  border: 1px solid #c7cccf;
+  margin: 15px;
+
+  label{
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  input[type="text"] {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    border: 1px solid #c7cccf;
+  }
+  input[type="button"] {
+    margin-top: 30px;
+    background-color: #0499e5;
+    color: #fff;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    transition: all .3s ease;
+    border: 1px solid #0499e5;
+    cursor: pointer;
+
+    &:hover{
+      color: #0499e5;
+      background-color: #fff;
+    }
+  }
+  textarea{
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    border: 1px solid #c7cccf;
+  }
+
+  &__title{
+    padding: 15px;
+  }
+
+  &__code{
+    padding: 15px;
+  }
+
+  &__language{
+    padding: 15px;
+  }
+
+  &__categories{
+    padding: 15px;
+
+    &__ul{
+      margin-top: 20px;
+      li{
+        font-size: 1.6rem;
+        color: #0499e5;
+
+        span{
+          color: #000;
+        }
+      }
+    }
+  }
+  &__add-snip{
+    padding: 15px;
+  }
+  &__error{
+    padding: 15px;
+  }
+}

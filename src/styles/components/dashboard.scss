@@ -1,0 +1,11 @@
+.dashboard{
+  display: flex;
+  justify-content: flex-start;
+
+  &__filter{
+
+  }
+  &__snippets{
+    width: 100%;
+  }
+}

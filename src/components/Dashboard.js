@@ -1,20 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+
+import SnipBox from './SnipBox';
+import selectSnippet from '../selectors/snippets';
+import FilterSnip from './FilterSnip';
 
 
 class Dashboard extends React.Component {
   render(){
     return(
-      <div>
-        <h1>caleo</h1>
-        {this.props.snippet.map((snip) => {
-          return (
+      <div className="dashboard">
+        <div className="dashboard__filter">
+          <FilterSnip />
+        </div>
+        <div className="dashboard__snippets">
+          {this.props.snippet.map((snip) => {
+            return (
               <div key={snip.id}>
-                <Link to={`edit/${snip.id}`}>{snip.title}</Link>
+                <SnipBox id={snip.id} title={snip.title} code={snip.code} date={snip.date} category={snip.category} language={snip.language} privacy={snip.privacy} />
               </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     )
   }
@@ -22,7 +29,7 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    snippet: state.snippets.snippetArray
+    snippet: selectSnippet(state.snippets.snippetArray, state.filters)
   }
 }
 

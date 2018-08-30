@@ -5,6 +5,7 @@ import { firebase } from './firebase/firebase';
 import { login, logout } from './redux/actions/auth';
 import { fbSetSnip } from './redux/actions/snippets';
 import AppRouter, { history } from './routes/AppRouter';
+import AppLoading from './components/AppLoading';
 
 
 import store from './redux/store/store';
@@ -27,7 +28,7 @@ const renderApp = () => {
     hasRendered = true;
   }
 }
-ReactDOM.render( <p>Loading...</p>, document.getElementById('app') );
+ReactDOM.render( <AppLoading />, document.getElementById('app') );
 
 store.subscribe(() => console.log(store.getState()));
 

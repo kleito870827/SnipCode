@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import database from '../../firebase/firebase';
+import moment from 'moment';
 
 // ADD_SNIP
 export const addSnip = (snippet = {}) => ({
@@ -14,10 +15,10 @@ export const fbAddSnip = (snipData = {}) => {
     const {
       title = '',
       code = '',
-      date = 0,
+      date = moment().format('MM/DD/YYYY'),
       privacy = false,
       category = [],
-      language = []
+      language = ''
     } = snipData;
 
     const snippet = { title, code, date, privacy, category, language };
@@ -58,9 +59,18 @@ export const editSnip = (id, update) => ({
 });
 
 // FB_EDIT_SNIP
-export const fbEditSnip = (id, update) => {
+export const fbEditSnip = (id, snipUpdate) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
+    const {
+      title = '',
+      code = '',
+      privacy = false,
+      category = [],
+      language = ''
+    } = snipUpdate;
+
+    const update = { title, code, privacy, category, language };
     return database.ref(`user/${uid}/snippet/${id}`).update(update).then(() => {
       dispatch(editSnip(id, update))
     })
