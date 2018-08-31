@@ -16,24 +16,32 @@ const EditSnipBox = (props) => (
     </div>
     <div className="edit-snip-box__categories">
       <label htmlFor="category">Add Category</label>
-      <input id="category" type="text" onKeyDown={props.OnKeyDownCategory} onChange={props.OnChangeCategory} value={props.currentCategory} />
-      <input type="button" onClick={props.OnClickAddCategoty} value="Add Category"/>
+      <div className="edit-snip-box__categories__input-btn">
+        <input id="category" type="text" onKeyDown={props.OnKeyDownCategory} onChange={props.OnChangeCategory} value={props.currentCategory} />
+        <input type="button" onClick={props.OnClickAddCategoty} value="Add Category"/>
+      </div>
       {props.category && (
         <ul className="edit-snip-box__categories__ul">
           {props.category.map((e, i) => {
-            return <li key={i}><div><span>{e}</span><span onClick={() => props.OnClickRemoveCategory(i)}><i className="fa fa-trash-o" aria-hidden="true"></i></span></div></li>
+            return <li onClick={() => props.OnClickRemoveCategory(i)} key={i}><div><span>{e}</span><span><i className="fa fa-trash-o" aria-hidden="true"></i></span></div></li>
           })}
         </ul>
       )}
     </div>
-    <div className="edit-snip-box__edit-remove-snip">
-      <div className="edit-snip-box__edit-remove-snip__edit-snip">
-        <input type="button" onClick={props.OnClickEditSnip} value="Edit Snippet" />
+    {props.type === 'edit' ? (
+      <div className="edit-snip-box__edit-remove-snip">
+        <div className="edit-snip-box__edit-remove-snip__edit-snip">
+          <input type="button" onClick={props.OnClickEditSnip} value="Edit Snippet" />
+        </div>
+        <div className="edit-snip-box__edit-remove-snip__remove-snip">
+          <input type="button" onClick={props.OnClickRemoveSnip} value="Remove" />
+        </div>
       </div>
-      <div className="edit-snip-box__edit-remove-snip__remove-snip">
-        <input type="button" onClick={props.OnClickRemoveSnip} value="Remove" />
+    ) : (
+      <div className="edit-snip-box__add-snip">
+        <input type="button" onClick={props.OnClickAddSnip} value="Create New Snippet" />
       </div>
-    </div>
+    )}
     <div className="edit-snip-box__error">
       <p className="error">{props.error}</p>
     </div>

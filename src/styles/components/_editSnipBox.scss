@@ -1,4 +1,110 @@
-.edit-snip-box {
+.edit-snip-box{
+  background-color: #fff;
+  border: 1px solid #c7cccf;
+  margin: 15px;
+
+  label{
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  input[type="text"] {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    border: 1px solid #c7cccf;
+  }
+  input[type="button"] {
+    margin-top: 30px;
+    background-color: #0499e5;
+    color: #fff;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    transition: all .3s ease;
+    border: 1px solid #0499e5;
+    cursor: pointer;
+
+    &:hover{
+      color: #0499e5;
+      background-color: #fff;
+    }
+  }
+  textarea{
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    border: 1px solid #c7cccf;
+  }
+
+  &__title{
+    padding: 15px;
+  }
+
+  &__code{
+    padding: 15px;
+  }
+
+  &__language{
+    padding: 15px;
+  }
+
+  &__categories{
+    padding: 15px;
+
+    &__input-btn{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      input[type="button"]{
+        margin-top: 0;
+        margin-left: 20px;
+      }
+    }
+
+    &__ul{
+      list-style: none;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding: 0 15px;
+      li{
+        background-color: #0499e5;
+        font-size: 1.4rem;
+        padding: 5px 10px;
+        border-radius: 3px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        font-size: 1.6rem;
+
+        span{
+          color: #fff;
+        }
+        i{
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  &__add-snip{
+    padding: 15px;
+    input[type="button"] {
+      margin-top: 0;
+    }
+  }
 
   &__edit-remove-snip{
   display: flex;
@@ -8,17 +114,24 @@
 
   &__edit-snip{
     margin-right: 30px;
+    input[type="button"] {
+      margin-top: 0;
+    }
   }
 
   &__remove-snip{
     input[type="button"]{
-      background-color: red;
-      border: 1px solid red;
+      background-color: #e21513;
+      border: 1px solid #e21513;
+      margin-top: 0;
 
       &:hover{
-        color: red;
+        color: #e21513;
       }
     }
   }
+  }
+  &__error{
+    padding: 15px;
   }
 }

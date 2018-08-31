@@ -84,6 +84,7 @@ class EditSnip extends Component {
     return (
         <div>
           <EditSnipBox
+            type = 'edit'
             OnChangeTitle = {this.OnChangeTitle}
             currentTitle = {this.props.currentSnippet.title}
             OnChangeCode = {this.OnChangeCode}

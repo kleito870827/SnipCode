@@ -36,10 +36,14 @@ firebase.auth().onAuthStateChanged((user) => {
   if(user){
     store.dispatch(login(user.uid));
     // console.log('uid', user.uid);
-    store.dispatch(fbSetSnip()).then(() => {
+    store.dispatch(fbSetSnip(), store).then(() => {
       renderApp();
-      if(history.location.pathname === '/'){
-        history.push('/dashboard');
+      // console.log(store.getState().snippets.snippetArray.length);
+      if(store.getState().snippets.snippetArray.length === 0){
+        history.push('/addsnip');
+      }else{
+        // history.location.pathname === '/'
+        history.push(history.location.pathname);
       }
     })
     .catch((err) => {

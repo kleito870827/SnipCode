@@ -4,7 +4,7 @@ export default (snippets, {keyword, category, language}) => {
     const keywordFilter = snip.title.toLowerCase().includes(keyword);
     const languageFilter = snip.language.toLowerCase().includes(language);
     const categoryFilter = category.length > 0 ? snip.category.some(r => category.indexOf(r) >= 0) : true;
-    console.log(categoryFilter);
+    // console.log(categoryFilter);
     return keywordFilter && languageFilter && categoryFilter;
   });
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import SnipBox from './SnipBox';
 import selectSnippet from '../selectors/snippets';
@@ -7,13 +8,29 @@ import FilterSnip from './FilterSnip';
 
 
 class Dashboard extends React.Component {
+  constructor () {
+    super();
+    this.state = {
+      menuLeft: '0',
+      snippetsMargin: '300px'
+    }
+  }
+  OnClickToggleMenu = () => {
+    this.state.menuLeft === '0' ? this.setState({menuLeft: '-300px', snippetsMargin: '0'}) : this.setState({menuLeft: '0', snippetsMargin: '300px'});
+  }
+
   render(){
     return(
       <div className="dashboard">
-        <div className="dashboard__filter">
-          <FilterSnip />
+        <div style={{left: this.state.menuLeft}} className="dashboard__filter">
+            <div onClick={this.OnClickToggleMenu} className={`dashboard__filter__toggle-menu dashboard__filter__toggle-menu--open`}>
+              {/* <i className="fa fa-arrow-left" aria-hidden="true"></i> */}
+              <i className="fa fa-angle-left" aria-hidden="true"></i>
+              {/* <i className="fa fa-chevron-left" aria-hidden="true"></i> */}
+            </div>
+            <FilterSnip />
         </div>
-        <div className="dashboard__snippets">
+        <div style={{marginLeft: this.state.snippetsMargin}} className="dashboard__snippets">
           {this.props.snippet.map((snip) => {
             return (
               <div key={snip.id}>
@@ -22,6 +39,10 @@ class Dashboard extends React.Component {
             )
           })}
         </div>
+        <div className="dashboard__addsnip">
+          <Link to="/addsnip" className="dashboard__addsnip__btn"><i className="fa fa-plus" aria-hidden="true"></i></Link>
+        </div>
+
       </div>
     )
   }

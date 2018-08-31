@@ -11,15 +11,16 @@ class Header extends Component {
   render(){
     return(
       <header>
+        <div className="header-height"></div>
         <div className="header">
           <div className="header__logo">
             <Link to="/dashboard">
-              <img src="images/SnipCode-logo.png" alt="SnipCode Logo" />
+              <img src="/images/SnipCode-logo.png" alt="SnipCode Logo" />
             </Link>
           </div>
             { this.props.isAuthenticated ? (
               <div className="header__authentication">
-                <Link to="/addsnip" className="header__authentication__button header__authentication__button--login">Create Snip</Link>
+                {/* <Link to="/addsnip" className="header__authentication__button header__authentication__button--login">Create Snip</Link> */}
                 <button onClick={this.props.startLogout} className="header__authentication__button header__authentication__button--login">Log Out</button>
               </div>
             ) : (

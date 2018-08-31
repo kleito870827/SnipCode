@@ -16,8 +16,10 @@ const AddSnipBox = (props) => (
     </div>
     <div className="add-snip-box__categories">
       <label htmlFor="category">Add Category</label>
-      <input id="category" type="text" onKeyDown={props.OnKeyDownCategory} onChange={props.OnChangeCategory} value={props.currentCategory} />
-      <input type="button" onClick={props.OnClickAddCategoty} value="Add Category"/>
+      <div className="add-snip-box__categories__input-btn">
+        <input id="category" type="text" onKeyDown={props.OnKeyDownCategory} onChange={props.OnChangeCategory} value={props.currentCategory} />
+        <input type="button" onClick={props.OnClickAddCategoty} value="Add Category"/>
+      </div>
       {props.category && (
         <ul className="add-snip-box__categories__ul">
           {props.category.map((e, i) => {

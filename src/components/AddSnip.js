@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AddSnipBox from './AddSnipBox';
+import EditSnipBox from './EditSnipBox';
 import * as currentActions from '../redux/actions/currentSnippet';
 import { fbAddSnip } from '../redux/actions/snippets';
 import { editError, clearError } from '../redux/actions/error';
@@ -82,7 +82,7 @@ class AddSnip extends Component{
     // console.log(this.props.currentSnippet.title);
     return (
       <div>
-        <AddSnipBox
+        <EditSnipBox
           OnChangeTitle = {this.OnChangeTitle}
           currentTitle = {this.props.currentSnippet.title}
           OnChangeCode = {this.OnChangeCode}

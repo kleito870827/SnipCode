@@ -49,14 +49,14 @@ class FilterSnip extends Component {
           <label htmlFor="filter-category">Categories</label>
           <div className="filterSnip__category__input">
             <input id="filter-category" placeholder="Category..." type="text" onKeyDown={this.onKeyDownAddCategory} onChange={this.OnChangeCategory} value={this.props.filters.currentCategory}/>
-            <span onClick={this.OnClickAddCategory} className="filterSnip__category__input__add"><i className="fa fa-plus" aria-hidden="true"></i></span>
+            <span onClick={this.OnClickAddCategory} className="filterSnip__category__input__add"><i className="fa fa-plus-square-o" aria-hidden="true"></i></span>
           </div>
         </div>
         <div className="filterSnip__category-loop">
           {this.props.filters.category && (
             <ul className="filterSnip__category-loop__ul">
               {this.props.filters.category.map((e, i) => {
-                return <li key={i}><div><span>{e}</span><span onClick={() => this.OnClickRemoveCategory(i)}><i className="fa fa-trash-o" aria-hidden="true"></i></span></div></li>
+                return <li key={i} onClick={() => this.OnClickRemoveCategory(i)}><div><span>{e}</span><span><i className="fa fa-trash-o" aria-hidden="true"></i></span></div></li>
               })}
             </ul>
           )}

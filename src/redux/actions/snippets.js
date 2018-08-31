@@ -22,7 +22,7 @@ export const fbAddSnip = (snipData = {}) => {
     } = snipData;
 
     const snippet = { title, code, date, privacy, category, language };
-
+    
     return database.ref(`user/${uid}/snippet`).push(snippet).then((ref) => {
       dispatch(addSnip({
         id: ref.key,
@@ -31,7 +31,7 @@ export const fbAddSnip = (snipData = {}) => {
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
   }
 }
 
