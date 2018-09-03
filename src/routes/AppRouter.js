@@ -22,7 +22,7 @@ const AppRouter = () => (
         <Route path="/" component={LoginPage} exact={true} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/addsnip" component={AddSnip} />
-        <PrivateRoute path="/edit/:id" component={EditSnip} />
+        <PrivateRoute path="/edit/:id" component={EditSnip} />        
         <Route path="/signup" component={SignUp} />
       </Switch>
       <Footer />

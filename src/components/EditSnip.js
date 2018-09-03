@@ -1,11 +1,22 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import InputForm from './InputForm';
 import * as currentActions from '../redux/actions/currentSnippet';
 import { fbRemoveSnip, fbEditSnip } from '../redux/actions/snippets';
+import Modal from 'react-modal';
+
+import InputForm from './InputForm';
 import EditSnipBox from './EditSnipBox';
 
+Modal.setAppElement('#app');
+
 class EditSnip extends Component {
+  constructor () {
+    super();
+
+    this.state = {
+      modalIsOpen: false
+    }
+  }
 
   componentDidMount() {
     this.props.clearCurrentSnip();
@@ -72,6 +83,13 @@ class EditSnip extends Component {
     this.props.fbRemoveSnip(this.props.match.params.id);
     this.props.history.push('/dashboard');
   }
+  OnClickOpenModalRemove = () => {
+    this.setState({modalIsOpen: true});
+  }
+
+  OnClickCloseModalRemove = () => {
+    this.setState({modalIsOpen: false});
+  }
 
   OnClickEditSnip = () => {
     this.props.fbEditSnip(this.props.match.params.id, this.props.currentSnippet);
@@ -87,6 +105,8 @@ class EditSnip extends Component {
             type = 'edit'
             OnChangeTitle = {this.OnChangeTitle}
             currentTitle = {this.props.currentSnippet.title}
+            OnChangePrivacy = {this.OnChangePrivacy}
+            currentPrivacy = {this.props.currentSnippet.privacy}
             OnChangeCode = {this.OnChangeCode}
             currentCode = {this.props.currentSnippet.code}
             OnChangeLanguage = {this.OnChangeLanguage}
@@ -98,9 +118,27 @@ class EditSnip extends Component {
             currentCategory = {this.props.currentSnippet.currentCategory}
             category = {this.props.currentSnippet.category}
             OnClickEditSnip = {this.OnClickEditSnip}
-            OnClickRemoveSnip = {this.OnClickRemoveSnip}
+            // OnClickRemoveSnip = {this.OnClickRemoveSnip}
+            OnClickOpenModalRemove = {this.OnClickOpenModalRemove}
             error = {this.props.error}
           />
+          <Modal
+            isOpen = {this.state.modalIsOpen}
+            onRequestClose = {this.OnClickCloseModalRemove}
+            className="Modal"
+            overlayClassName="Overlay"
+            aria={{
+              labelledby: "Remove",
+              describedby: "Remove Current Snippet"
+            }}>
+            <div className="Modal__content">
+              <h2>{this.props.currentSnippet.title}</h2>
+              <p>Are you sure you want to permanently remove this item?</p>
+              <button className="Modal__content--no" onClick={this.OnClickCloseModalRemove}>No</button>
+              <button className="Modal__content--yes" onClick={this.OnClickRemoveSnip}>Yes</button>
+            </div>
+          </Modal>
+
           {/* <InputForm id="title" name="Title" type="text" change={this.OnChangeTitle} value={this.props.currentSnippet.title} required />
           <label htmlFor="code">Code</label>
           <textarea id="code" onChange={this.OnChangeCode} value={this.props.currentSnippet.code}></textarea>

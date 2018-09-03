@@ -85,6 +85,8 @@ class AddSnip extends Component{
         <EditSnipBox
           OnChangeTitle = {this.OnChangeTitle}
           currentTitle = {this.props.currentSnippet.title}
+          OnChangePrivacy = {this.OnChangePrivacy}
+          currentPrivacy = {this.props.currentSnippet.privacy}
           OnChangeCode = {this.OnChangeCode}
           currentCode = {this.props.currentSnippet.code}
           OnChangeLanguage = {this.OnChangeLanguage}

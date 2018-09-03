@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Highlight from 'react-highlight';
 
+import UserNamePhoto from './UserNamePhoto';
+
 
 class SnipBox extends Component {
   // console.log(props.category.length);
@@ -29,14 +31,18 @@ class SnipBox extends Component {
             <p><span className="snip-box__strong">Title:</span> {this.props.title}
             {this.props.privacy ? (
               // <p><i className="fa fa-lock" aria-hidden="true"></i></p>
-              <span className="snip-box__header__private snip-box__header__private--private">Private</span>
+              <span className={`snip-box__header__private snip-box__header__private--private ${!this.props.userEdit ? 'hidden' : ''}`}>Private</span>
             ): (
-              <span className="snip-box__header__private snip-box__header__private--public">Public</span>
-          )}
+              <span className={`snip-box__header__private snip-box__header__private--public ${!this.props.userEdit ? 'hidden' : ''}`}>Public</span>
+            )}
             </p>
           </div>
           <div className="snip-box__header__edit">
-            <p><Link to={`edit/${this.props.id}`}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link></p>
+            {this.props.userEdit ? (
+              <p><Link to={`edit/${this.props.id}`}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link></p>
+            ) : (
+              <UserNamePhoto userName={this.props.userName} photoURL={this.props.photoURL} currentUser = {false} />
+            )}
         </div>
       </div>
         <div className="snip-box__body">

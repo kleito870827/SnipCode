@@ -6,7 +6,7 @@ export default (state = snippetReducerDefaultState, action) => {
   switch (action.type) {
     case 'ADD_SNIP':
       return {
-        snippetArray: [...state.snippetArray, action.snippet]
+        snippetArray: [action.snippet, ...state.snippetArray]
       };
     case 'SET_SNIP':
       return {

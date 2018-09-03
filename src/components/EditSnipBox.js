@@ -3,6 +3,10 @@ import React from 'react';
 const EditSnipBox = (props) => (
   <div className="edit-snip-box">
     <div className="edit-snip-box__title">
+      <label htmlFor="pivacy">Privacy</label>
+      <input id="privacy" type="checkbox" onChange={props.OnChangePrivacy} checked={props.currentPrivacy} value={props.currentPrivacy} />
+    </div>
+    <div className="edit-snip-box__title">
       <label htmlFor="title">Title <span className="required">*</span></label>
       <input id="title" type="text" onChange={props.OnChangeTitle} value={props.currentTitle} />
     </div>
@@ -34,7 +38,7 @@ const EditSnipBox = (props) => (
           <input type="button" onClick={props.OnClickEditSnip} value="Edit Snippet" />
         </div>
         <div className="edit-snip-box__edit-remove-snip__remove-snip">
-          <input type="button" onClick={props.OnClickRemoveSnip} value="Remove" />
+          <input type="button" onClick={props.OnClickOpenModalRemove} value="Remove" />
         </div>
       </div>
     ) : (

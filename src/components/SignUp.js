@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import {connect} from 'react-redux';
+import { firebase } from '../firebase/firebase';
 
 import HeroImage from './HeroImage';
 import InputForm from './InputForm';
@@ -11,11 +12,16 @@ class SignUp extends Component {
     super();
 
     this.state = {
+      userName: '',
       email: '',
       password: '',
       Rpassword: '',
       error: ''
     }
+  }
+
+  OnChangeUserName = (e) => {
+    this.setState({userName: e.target.value});
   }
 
   OnChangeEmail = (e) => {
@@ -29,10 +35,15 @@ class SignUp extends Component {
   OnChangeRpassword = (e) => {
     this.setState({Rpassword: e.target.value});
   }
+
   OnClickSignUp = () => {
     if(this.state.password === this.state.Rpassword){
-      this.props.startSignUpWithEmailPassword(this.state.email, this.state.password);
-      this.setState({error: ''});
+      if(this.state.userName){
+        this.props.startSignUpWithEmailPassword(this.state.email, this.state.password, this.state.userName)
+        this.setState({error: ''});
+      }else{
+        this.setState({error: 'User Name is required.'});
+      }
     }else{
       this.setState({error: 'Password does not match the confirm password.'});
     }
@@ -53,7 +64,7 @@ class SignUp extends Component {
           <div className="signup__body form__body">
             <h2>Create your account</h2>
             <form className="form">
-              {/* <InputForm id="userName" type="text" name="User Name" required={true}/> */}
+              <InputForm id="userName" type="text" change={this.OnChangeUserName} value={this.state.userName} name="User Name" required={true}/>
               {/* <InputForm id="lname" type="text" name="Last Name" required={true}/> */}
               <InputForm id="email" type="text" change={this.OnChangeEmail} value={this.state.email} name="Email" required={true}/>
               <InputForm id="password" type="password" change={this.OnChangePassword} value={this.state.password} name="Password" required={true} />
@@ -73,7 +84,7 @@ class SignUp extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   startLoginWithGoogle: () => dispatch(startLoginWithGoogle()),
-  startSignUpWithEmailPassword: (email, password) => dispatch(startSignUpWithEmailPassword(email, password)),
+  startSignUpWithEmailPassword: (email, password, userName) => dispatch(startSignUpWithEmailPassword(email, password, userName)),
 });
 
 const mapStateToProps = (state) => {

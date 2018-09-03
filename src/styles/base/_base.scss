@@ -21,3 +21,42 @@ p.error{
   justify-content: center;
   align-items: center;
 }
+.Modal {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   padding: 20px;
+   background-color: #fff;
+   text-align: center;
+
+   &__content {
+    button{
+      margin: 10px;
+      cursor: pointer;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+    &--no{
+      background-color: #4684ee;
+    }
+    &--yes{
+      background-color: #e21513;
+    }
+   }
+ }
+.Overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, .7);
+ }
+ a{
+   text-decoration: none !important;
+ }
+ .hidden{
+   display: none;
+ }

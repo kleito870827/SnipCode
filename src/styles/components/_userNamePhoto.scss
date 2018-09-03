@@ -1,0 +1,142 @@
+.userNamePhoto{
+  position: relative;
+  &__userContent{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    &__userName{
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    &__photoUrl{
+      max-width: 35px;
+      height: auto;
+      border-radius: 100%;
+      margin-left: 10px;
+    }
+
+    &__dropdownIcon{
+      margin-left: 10px;
+      i{
+        color: #fff;
+        font-size: 2rem;
+      }
+    }
+  }
+  &__currentUser{
+    position: relative;
+    cursor: pointer;
+    background-color: #0499e5;
+    border-bottom: 1px solid #fff;
+    padding: 4px 15px;
+    top: 1px;
+    min-width: 120px;
+  }
+
+  &__setting{
+
+    &__dropdown{
+      position: absolute;
+      width: 100%;
+      // top: 52px;
+      top: 0;
+      left: 0;
+      background-color: #0499e5;
+      text-align: center;
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .3s ease;
+      z-index: -1;
+
+      &--open{
+        top: 52px;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &--close{
+        top: 0;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+
+      &__btn{
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 700;
+        padding: 10px;
+        display: block;
+        cursor: pointer;
+        i{
+          padding: 5px;
+          transition: all .3s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--user-setting:hover  i{
+          -webkit-animation: rotating 3s linear infinite;
+          -moz-animation: rotating 3s linear infinite;
+          -ms-animation: rotating 3s linear infinite;
+          -o-animation: rotating 3s linear infinite;
+          animation: rotating 3s linear infinite;
+        }
+
+        &--log-out:hover  i{
+          -webkit-animation: translate 1s linear infinite;
+          -moz-animation: translate 1s linear infinite;
+          -ms-animation: translate 1s linear infinite;
+          -o-animation: translate 1s linear infinite;
+          animation: translate 1s linear infinite;
+        }
+      }
+    }
+  }
+}
+
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes translate {
+  0% {
+    -ms-transform: rtranslateX(0);
+    -moz-transform: rtranslateX(0);
+    -webkit-transform: rtranslateX(0);
+    -o-transform: rtranslateX(0);
+    transform: rtranslateX(0);
+  }
+  50% {
+    -ms-transform: translateX(5px);
+    -moz-transform: translateX(5px);
+    -webkit-transform: translateX(5px);
+    -o-transform: translateX(5px);
+    transform: translateX(5px);
+  }
+  100% {
+    -ms-transform: rtranslateX(0);
+    -moz-transform: rtranslateX(0);
+    -webkit-transform: rtranslateX(0);
+    -o-transform: rtranslateX(0);
+    transform: rtranslateX(0);
+  }
+}

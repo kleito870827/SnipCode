@@ -12,9 +12,17 @@ export const removeAuthError = () => ({
 })
 
 // LOGIN
-export const login = (uid) => ({
+export const login = (uid, userName, photoURL) => ({
   type: 'LOGIN',
-  uid
+  uid,
+  userName,
+  photoURL
+});
+
+// EDIT_USER_NAME
+export const editUserName = (userName) => ({
+  type: 'EDIT_USER_NAME',
+  userName
 });
 
 
@@ -30,11 +38,18 @@ export const startLoginWithGoogle = () => {
   }
 }
 
-export const startSignUpWithEmailPassword = (email, password) => {
+export const startSignUpWithEmailPassword = (email, password, userName) => {
   return (dispatch) => {
+    dispatch(editUserName(userName));
     return firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
-      dispatch(removeAuthError());
+      firebase.auth().currentUser.updateProfile({
+        displayName: userName,
+        photoURL: '/images/no_user.jpg'
+      }).then(() => {
+          console.log('updateProfile');
+        dispatch(removeAuthError());
+      })
     })
     .catch(error => {
       dispatch(authError(error.message))

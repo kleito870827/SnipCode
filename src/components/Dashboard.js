@@ -32,9 +32,23 @@ class Dashboard extends React.Component {
         </div>
         <div style={{marginLeft: this.state.snippetsMargin}} className="dashboard__snippets">
           {this.props.snippet.map((snip) => {
+            let isUser = true;
+            if(snip.user && (snip.user !== this.props.user)){
+              isUser = false;
+            }
             return (
               <div key={snip.id}>
-                <SnipBox id={snip.id} title={snip.title} code={snip.code} date={snip.date} category={snip.category} language={snip.language} privacy={snip.privacy} />
+                <SnipBox
+                  id = {snip.id}
+                  title = {snip.title}
+                  code = {snip.code}
+                  date = {snip.date}
+                  category = {snip.category}
+                  language = {snip.language}
+                  privacy = {snip.privacy}
+                  userEdit = {isUser}
+                  userName = {snip.userName}
+                  photoURL = {snip.photoURL} />
               </div>
             )
           })}
@@ -50,7 +64,8 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    snippet: selectSnippet(state.snippets.snippetArray, state.filters)
+    snippet: selectSnippet(state.snippets.snippetArray, state.filters),
+    user: state.auth.uid
   }
 }
 

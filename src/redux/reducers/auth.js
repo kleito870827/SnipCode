@@ -1,5 +1,6 @@
 const defaultState = {
   uid: '',
+  userName: '',
   authError: ''
 }
 
@@ -8,11 +9,20 @@ export default (state = defaultState, action) => {
     case 'LOGIN':
       return {
         ...state,
-        uid: action.uid
+        userName: action.userName,
+        uid: action.uid,
+        photoURL: action.photoURL
+
       };
+    case 'EDIT_USER_NAME':
+      return {
+        ...state,
+        userName: action.userName
+      }
     case 'LOGOUT':
       return {
         uid: '',
+        userName: '',
         authError: ''
       };
     case 'AUTHERROR':
