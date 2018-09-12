@@ -18,7 +18,7 @@ class UserNamePhoto extends Component{
   }
   render(){
     return (
-      <div className="userNamePhoto" onMouseEnter={this.OnHoverInOpen} onMouseLeave={this.HoverOutClose}>
+      <div className="userNamePhoto" onMouseOver={this.OnHoverInOpen} onMouseOut={this.HoverOutClose}>
         <div id="menu-setting" className={`userNamePhoto__userContent ${this.props.currentUser && 'userNamePhoto__currentUser'}`}>
           <p className="userNamePhoto__userContent__userName">{this.props.userName}</p>
           <img className="userNamePhoto__userContent__photoUrl" src={this.props.photoURL} alt={this.props.userName}/>
