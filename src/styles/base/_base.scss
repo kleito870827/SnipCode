@@ -68,3 +68,8 @@ p.successful{
  .text-center{
    text-align: center;
  }
+ input[type="button"]{
+   -webkit-appearance: none;
+   -moz-appearance:    none;
+   appearance:         none;
+ }

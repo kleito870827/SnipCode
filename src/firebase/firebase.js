@@ -1,16 +1,13 @@
 import * as firebase from 'firebase';
-// import firebase from 'firebase/app';
-// import 'firebase/<PACKAGE>';
 
 const config = {
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    databaseURL: process.env.DATA_BASE_URL,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID
+    apiKey: "AIzaSyAUqJ2a-Sv22J83uam2iJq7wU4KlJcZSp0",
+    authDomain: "snipcode-3709a.firebaseapp.com",
+    databaseURL: "https://snipcode-3709a.firebaseio.com",
+    projectId: "snipcode-3709a",
+    storageBucket: "snipcode-3709a.appspot.com",
+    messagingSenderId: "235142164550"
 };
-// console.log(config);
 
 firebase.initializeApp(config);
 

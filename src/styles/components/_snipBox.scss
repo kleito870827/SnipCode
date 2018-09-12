@@ -100,7 +100,14 @@
         color: #000;
         font-size: 1.1rem;
         border-radius: 3px;
+        background-color: #fff;
+
+        @media (max-width: 700px) {
+          opacity: 1;
+          visibility: visible;
+        }
       }
+
     }
     &:hover &__code__copy-btn{
       opacity: 1;
