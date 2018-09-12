@@ -88,7 +88,7 @@ const moveFbRecord = (oldRef, newRef, update, id, dispatch, privacy) => {
       }else{
         return database.ref(oldRef).remove();
       }
-      console.log('Done!');
+      // console.log('Done!');
    }).catch(err => {
         console.log(err.message);
    });
@@ -108,7 +108,7 @@ export const fbEditSnip = (id, snipUpdate) => {
     } = snipUpdate;
 
     const update = { title, code, privacy, category, language, user };
-    console.log(update);
+    // console.log(update);
     // console.log(privacy);
     // if(!privacy){
     //   console.log('no private');
