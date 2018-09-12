@@ -8,7 +8,7 @@ const config = {
     storageBucket: process.env.STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGING_SENDER_ID
 };
-console.log(config);
+// console.log(config);
 
 firebase.initializeApp(config);
 
