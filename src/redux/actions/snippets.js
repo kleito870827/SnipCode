@@ -12,17 +12,19 @@ export const addSnip = (snippet = {}) => ({
 export const fbAddSnip = (snipData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
+
     const {
       title = '',
       code = '',
       date = moment().format('MM/DD/YYYY'),
       privacy = false,
-      category = [],
+      category = '',
       language = '',
       user = uid
     } = snipData;
 
     const snippet = { title, code, date, privacy, category, language, user };
+
     if(privacy){
       return database.ref(`user/${uid}/snippet`).push(snippet).then((ref) => {
         dispatch(addSnip({
@@ -100,12 +102,13 @@ export const fbEditSnip = (id, snipUpdate) => {
       title = '',
       code = '',
       privacy = false,
-      category = [],
+      category = '',
       language = '',
       user = uid
     } = snipUpdate;
 
     const update = { title, code, privacy, category, language, user };
+    console.log(update);
     // console.log(privacy);
     // if(!privacy){
     //   console.log('no private');
@@ -143,12 +146,15 @@ export const fbSetSnip = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     // console.log(uid);
-    const snippet = [];
+    const privateSnippet = [];
+    const publicSnippet = [];
+    let finishSnippet = [];
+
     return database.ref(`user/${uid}/snippet`).once('value').then((snapshot) => {
 
       snapshot.forEach((childSnapshot) => {
         // console.log(childSnapshot.val());
-        snippet.push({
+        privateSnippet.push({
           id: childSnapshot.key,
           ...childSnapshot.val()
         });
@@ -165,14 +171,24 @@ export const fbSetSnip = () => {
             userName = snap.val().userName ? snap.val().userName : 'Annonymous';
             photoURL = snap.val().photoURL ? snap.val().photoURL : '/images/no_user.jpg';
           }).then(() => {
-            snippet.push({
-              id: childSnapshot.key,
-              ...childSnapshot.val(),
-              userName,
-              photoURL
-            });
+            if(uid === userId){
+              publicSnippet.unshift({
+                id: childSnapshot.key,
+                ...childSnapshot.val(),
+                userName,
+                photoURL
+              });
+            }else{
+              publicSnippet.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val(),
+                userName,
+                photoURL
+              });
+            }
           }).then(() => {
-            dispatch(setSnip(snippet));
+            finishSnippet = [...privateSnippet, ...publicSnippet]
+            dispatch(setSnip(finishSnippet));
           })
           // console.log(firebase.auth().currentUser.displayName);
         });

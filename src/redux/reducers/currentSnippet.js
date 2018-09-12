@@ -3,7 +3,7 @@ const currentSnippetReducerDefaultState = {
     code: '',
     privacy: false,
     currentCategory: '',
-    category: [],
+    category: '',
     language: '',
 }
 

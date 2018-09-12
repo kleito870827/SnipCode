@@ -57,11 +57,11 @@ class SnipBox extends Component {
             <p><span className="snip-box__strong">Date:</span> {this.props.date}</p>
           </div>
           <div className="snip-box__footer__language">
-            <p><span className="snip-box__strong">Language:</span> {this.props.language}</p>
+            <p><span className="snip-box__strong">Language:</span> {this.props.language ? this.props.language : 'none'}</p>
           </div>
           <div className="snip-box__footer__category">
             <p><span className="snip-box__strong">Categories:</span>
-            {this.props.category && this.props.category.map((cat, i) => <span key={i}> {cat}{this.props.category.length - 1 === i ? '' : ','}</span>)}
+            {this.props.category ? this.props.category.map((cat, i) => <span key={i}> {cat}{this.props.category.length - 1 === i ? '' : ','}</span>) : ' none'}
           </p>
         </div>
       </div>

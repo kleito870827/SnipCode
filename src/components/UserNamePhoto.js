@@ -10,14 +10,16 @@ class UserNamePhoto extends Component{
     }
   }
 
-  OnClickOpenDropdown = () => {
-    const newClass = this.state.dropdownClass === 'close' ? 'open' : 'close';
-    this.setState({dropdownClass: newClass});
+  OnHoverInOpen = () => {
+    this.setState({dropdownClass: 'open'});
+  }
+  HoverOutClose = () => {
+    this.setState({dropdownClass: 'close'});
   }
   render(){
     return (
-      <div className="userNamePhoto">
-        <div onClick={this.OnClickOpenDropdown} className={`userNamePhoto__userContent ${this.props.currentUser && 'userNamePhoto__currentUser'}`}>
+      <div className="userNamePhoto" onMouseOver={this.OnHoverInOpen} onMouseOut={this.HoverOutClose}>
+        <div id="menu-setting" className={`userNamePhoto__userContent ${this.props.currentUser && 'userNamePhoto__currentUser'}`}>
           <p className="userNamePhoto__userContent__userName">{this.props.userName}</p>
           <img className="userNamePhoto__userContent__photoUrl" src={this.props.photoURL} alt={this.props.userName}/>
           {this.props.currentUser && <p className="userNamePhoto__userContent__dropdownIcon"><i className="fa fa-angle-down" aria-hidden="true"></i></p>}

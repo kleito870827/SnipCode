@@ -1,7 +1,8 @@
 const defaultState = {
   uid: '',
   userName: '',
-  authError: ''
+  authError: '',
+  successful: ''
 }
 
 export default (state = defaultState, action) => {
@@ -19,6 +20,11 @@ export default (state = defaultState, action) => {
         ...state,
         userName: action.userName
       }
+    case 'EDIT_USER_IMAGE_URL':
+      return {
+        ...state,
+        photoURL: action.imageUrl
+      }
     case 'LOGOUT':
       return {
         uid: '',
@@ -34,6 +40,16 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         authError: ''
+      }
+    case 'SUCCESSFUL':
+      return {
+        ...state,
+        successful: action.successful
+      }
+    case 'REMOVESUCCESSFUL':
+      return {
+        ...state,
+        successful: ''
       }
     default:
       return state;

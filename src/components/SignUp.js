@@ -39,7 +39,7 @@ class SignUp extends Component {
   OnClickSignUp = () => {
     if(this.state.password === this.state.Rpassword){
       if(this.state.userName){
-        this.props.startSignUpWithEmailPassword(this.state.email, this.state.password, this.state.userName)
+        this.props.startSignUpWithEmailPassword(this.state.email, this.state.password, this.state.userName) 
         this.setState({error: ''});
       }else{
         this.setState({error: 'User Name is required.'});

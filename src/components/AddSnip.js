@@ -4,6 +4,7 @@ import EditSnipBox from './EditSnipBox';
 import * as currentActions from '../redux/actions/currentSnippet';
 import { fbAddSnip } from '../redux/actions/snippets';
 import { editError, clearError } from '../redux/actions/error';
+import LinkGetTo from './LinkGetTo';
 
 
 class AddSnip extends Component{
@@ -110,6 +111,7 @@ class AddSnip extends Component{
         <InputForm id="language" name="Language" type="text" change={this.OnChangeLanguage} value={this.props.currentSnippet.currentLanguage} />
         <input type="submit" onClick={this.OnClickAddLanguage} value="add language"/>
         <input type="submit" onClick={this.OnClickAddSnip} value="add New Snippet" /> */}
+        <LinkGetTo to="/dashboard" icon="fa-arrow-left" />
       </div>
     )
   }

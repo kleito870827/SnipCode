@@ -1,22 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+
 
 import SnipBox from './SnipBox';
 import selectSnippet from '../selectors/snippets';
 import FilterSnip from './FilterSnip';
+import LinkGetTo from './LinkGetTo';
 
 
 class Dashboard extends React.Component {
   constructor () {
     super();
     this.state = {
-      menuLeft: '0',
-      snippetsMargin: '300px'
+      menuLeft: window.matchMedia('(max-width: 700px)').matches ? '-300px' : '0',
+      snippetsMargin: window.matchMedia('(max-width: 700px)').matches ? '0' : '300px'
     }
   }
   OnClickToggleMenu = () => {
     this.state.menuLeft === '0' ? this.setState({menuLeft: '-300px', snippetsMargin: '0'}) : this.setState({menuLeft: '0', snippetsMargin: '300px'});
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // One possible fix...
+    window.matchMedia('(max-width: 700px)').onchange = (e) => {
+      if( e.matches ){
+        if(this.state.menuLeft === '0' || this.state.snippetsMargin === '300px'){
+          this.setState({menuLeft: '-300px', snippetsMargin: '0'})
+        }
+      } else {
+        if(this.state.menuLeft === '-300px' || this.state.snippetsMargin === '0'){          
+          this.setState({menuLeft: '0', snippetsMargin: '300px'})
+        }
+      }
+    }
+    // if(window.matchMedia('(max-width: 700px)').matches){
+    //     this.setState({menuLeft: '-300px', snippetsMargin: '0'})
+    //   } else {
+    //     this.setState({menuLeft: '0', snippetsMargin: '300px'})
+    //   }
   }
 
   render(){
@@ -53,10 +74,7 @@ class Dashboard extends React.Component {
             )
           })}
         </div>
-        <div className="dashboard__addsnip">
-          <Link to="/addsnip" className="dashboard__addsnip__btn"><i className="fa fa-plus" aria-hidden="true"></i></Link>
-        </div>
-
+        <LinkGetTo to="/addsnip" icon="fa-plus" />
       </div>
     )
   }

@@ -13,6 +13,11 @@ p.error{
   font-size: 1.4rem;
   text-align: center;
 }
+p.successful{
+  color: #7e7e7e;
+  font-size: 1.4rem;
+  text-align: center;
+}
 .loading-cont{
   width: 100vw;
   height: 100vh;
@@ -59,4 +64,7 @@ p.error{
  }
  .hidden{
    display: none;
+ }
+ .text-center{
+   text-align: center;
  }

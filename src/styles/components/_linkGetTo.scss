@@ -1,0 +1,24 @@
+.linkGetTo{
+  position: fixed;
+  z-index: 7;
+  bottom: 20px;
+  right: 20px;
+
+  &__btn{
+    i{
+      border-radius: 100%;
+      background-color: #0499e5;
+      padding: 20px 22.2px;
+      font-size: 2rem;
+      color: #fff;
+      transition: all .3s ease;
+      -webkit-box-shadow: 14px 14px 34px -14px rgba(0,0,0,0.75);
+      -moz-box-shadow: 14px 14px 34px -14px rgba(0,0,0,0.75);
+      box-shadow: 14px 14px 34px -14px rgba(0,0,0,0.75);
+
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
+  }
+}

@@ -6,6 +6,8 @@ import { login, logout } from './redux/actions/auth';
 import { fbSetSnip } from './redux/actions/snippets';
 import AppRouter, { history } from './routes/AppRouter';
 import AppLoading from './components/AppLoading';
+/* yarn run build:run */
+/* yarn start */
 
 
 import store from './redux/store/store';

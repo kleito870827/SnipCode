@@ -1,4 +1,4 @@
-import { firebase, googleAuthProvider } from '../../firebase/firebase';
+import database, { firebase, googleAuthProvider } from '../../firebase/firebase';
 
 // AUTHERROR
 export const authError = (error) => ({
@@ -10,6 +10,18 @@ export const authError = (error) => ({
 export const removeAuthError = () => ({
   type: 'REMOVEAUTHERROR'
 })
+
+// SUCCESSFUL
+export const successful = (successful) => ({
+  type: 'SUCCESSFUL',
+  successful
+});
+
+// REMOVESUCCESSFUL
+export const removeSuccessful = () => ({
+  type: 'REMOVESUCCESSFUL'
+})
+
 
 // LOGIN
 export const login = (uid, userName, photoURL) => ({
@@ -25,6 +37,79 @@ export const editUserName = (userName) => ({
   userName
 });
 
+export const fbUpdateUserName = (userName, userId) => {
+  return (dispatch) => {
+    return firebase.auth().currentUser.updateProfile({
+      displayName: userName
+    }).then(() => {
+      database.ref(`user/${userId}/userSetting`).update({userName})
+      .then(() => {
+        dispatch(editUserName(userName));
+        dispatch(successful('Your user name have been updated successfully'));
+        dispatch(removeAuthError());
+      })
+      .catch((error) => {
+        dispatch(removeSuccessful());
+        dispatch(authError(error.message));
+      })
+    }).catch((error) => {
+      dispatch(removeSuccessful());
+      dispatch(authError(error.message));
+    })
+  }
+}
+
+// EDIT_USER_IMAGE_URL
+export const editUserImageUrl = (imageUrl) => ({
+  type: 'EDIT_USER_IMAGE_URL',
+  imageUrl
+})
+
+export const fbUpdateImageUrl = (image, userId) => {
+  return (dispatch) => {
+    const metadata = {
+      contentType: image.type
+    };
+    return firebase.storage().ref().child(userId).put(image, metadata)
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then((url) => {
+        firebase.auth().currentUser.updateProfile({
+          photoURL: url
+        }).then(() => {
+          database.ref(`user/${userId}/userSetting`).update({photoURL: url})
+          .then(() => {
+            dispatch(editUserImageUrl(url));
+            dispatch(successful('Your profile photo have been updated successfully'));
+            dispatch(removeAuthError());
+          })
+          .catch((error) => {
+            dispatch(removeSuccessful());
+            dispatch(authError(error.message));
+          })
+        }).catch((error) => {
+          dispatch(removeSuccessful());
+          dispatch(authError(error.message));
+        });
+      }).catch((error) => {
+        dispatch(removeSuccessful());
+        dispatch(authError(error.message));
+      });
+  }
+}
+
+export const fbUpdatePassword = (newPassword) => {
+  return (dispatch) => {
+    return firebase.auth().currentUser.updatePassword(newPassword)
+    .then(() => {
+      dispatch(successful('Your password have been updated successfully'));
+      dispatch(removeAuthError());
+    }).catch((error) => {
+      dispatch(removeSuccessful());
+      dispatch(authError(error.message));
+    })
+  }
+}
+
 
 export const startLoginWithGoogle = () => {
   return (dispatch) => {
@@ -33,6 +118,7 @@ export const startLoginWithGoogle = () => {
       dispatch(removeAuthError());
     })
     .catch(error => {
+      dispatch(removeSuccessful());
       dispatch(authError(error.message));
     })
   }
@@ -52,6 +138,7 @@ export const startSignUpWithEmailPassword = (email, password, userName) => {
       })
     })
     .catch(error => {
+      dispatch(removeSuccessful());
       dispatch(authError(error.message))
     })
   }
@@ -64,6 +151,21 @@ export const startLogInWithEmailPassword = (email, password) => {
       dispatch(removeAuthError());
     })
     .catch(error => {
+      dispatch(removeSuccessful());
+      dispatch(authError(error.message))
+    })
+  }
+}
+
+// Send a password reset email
+export const fbsendPasswordResetEmail = (email) => {
+  return (dispatch) => {
+    return firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      dispatch(successful('Email has been sent to reset your password'));
+      dispatch(removeAuthError());
+    }).catch((error) => {
+      dispatch(removeSuccessful());
       dispatch(authError(error.message))
     })
   }

@@ -11,6 +11,7 @@ import SignUp from '../components/SignUp';
 import PrivateRoute from './PrivateRoute';
 import AddSnip from '../components/AddSnip';
 import EditSnip from '../components/EditSnip';
+import Setting from '../components/Setting';
 
 export const history = createHistory();
 
@@ -21,8 +22,9 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={LoginPage} exact={true} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/usersetting" component={Setting} />
         <PrivateRoute path="/addsnip" component={AddSnip} />
-        <PrivateRoute path="/edit/:id" component={EditSnip} />        
+        <PrivateRoute path="/edit/:id" component={EditSnip} />
         <Route path="/signup" component={SignUp} />
       </Switch>
       <Footer />

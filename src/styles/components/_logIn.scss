@@ -1,0 +1,13 @@
+.logInPage{
+
+  &__body{
+
+    &__btn{
+      text-align: center;
+      display: inline-block;
+      cursor: pointer;
+      border-bottom: 1px solid #7e7e7e;
+      padding-bottom: 5px;
+    }
+  }
+}

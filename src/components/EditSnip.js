@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 
 import InputForm from './InputForm';
 import EditSnipBox from './EditSnipBox';
+import LinkGetTo from './LinkGetTo';
 
 Modal.setAppElement('#app');
 
@@ -155,6 +156,7 @@ class EditSnip extends Component {
           <InputForm id="language" name="Language" type="text" change={this.OnChangeLanguage} value={this.props.currentSnippet.language} />
           <input type="submit" onClick={this.OnClickEditSnip} value="edit Snippet" />
           <button onClick={this.OnClickRemoveSnip}>remove</button> */}
+          <LinkGetTo to="/dashboard" icon="fa-arrow-left" />
         </div>
     )
   }
