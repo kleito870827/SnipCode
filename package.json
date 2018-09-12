@@ -26,6 +26,7 @@
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-avatar-editor": "^11.0.4",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.0.0",
     "react-dropzone": "^5.0.1",
     "react-highlight": "^0.12.0",

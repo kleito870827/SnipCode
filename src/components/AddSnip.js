@@ -8,10 +8,6 @@ import LinkGetTo from './LinkGetTo';
 
 
 class AddSnip extends Component{
-  // constructor(props){
-  //   super(props);
-  //   this.OnChangeTitle = this.OnChangeTitle.bind(this);
-  // }
 
   componentWillMount (){
     this.props.clearCurrentSnip();
@@ -56,20 +52,6 @@ class AddSnip extends Component{
     this.props.removeCurrentSnipCategory(index);
   }
 
-  // OnKeyDownLanguage = (e) => {
-  //   e.keyCode === 13 && this.OnClickAddLanguage();
-  // }
-
-  // OnClickAddLanguage = () => {
-  //   const language = this.props.currentSnippet.currentLanguage;
-  //   if(language) {
-  //     this.props.addCurrentSnipLanguage(language);
-  //     this.props.editCurrentSnipLanguage('');
-  //   }else {
-  //     console.log('language not add');
-  //   }
-  // }
-
   OnClickAddSnip = () => {
     if(this.props.currentSnippet.title && this.props.currentSnippet.code){
       this.props.fbAddSnip(this.props.currentSnippet);
@@ -102,15 +84,6 @@ class AddSnip extends Component{
           error = {this.props.error}
          />
 
-        {/* <InputForm id="title" name="Title" type="text" change={this.OnChangeTitle} value={this.props.currentSnippet.title} required />
-        <label htmlFor="code">Code</label>
-        <textarea id="code" onChange={this.OnChangeCode} value={this.props.currentSnippet.code}></textarea>
-        <InputForm id="private" name="Private" change={this.OnChangePrivacy} type="checkbox" value={this.props.currentSnippet.privacy} check={this.props.currentSnippet.privacy} />
-        <InputForm id="category" keyDown={this.OnKeyDownCategory} name="Category" type="text" change={this.OnChangeCategory} value={this.props.currentSnippet.currentCategory} />
-        <input type="submit" onClick={this.OnClickAddCategoty} value="add category"/>
-        <InputForm id="language" name="Language" type="text" change={this.OnChangeLanguage} value={this.props.currentSnippet.currentLanguage} />
-        <input type="submit" onClick={this.OnClickAddLanguage} value="add language"/>
-        <input type="submit" onClick={this.OnClickAddSnip} value="add New Snippet" /> */}
         <LinkGetTo to="/dashboard" icon="fa-arrow-left" />
       </div>
     )

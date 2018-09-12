@@ -38,14 +38,6 @@ class Setting extends Component {
     OnClickHandleNewImage = () => {
       document.getElementById("new-file").click();
     }
-    // function dataURLtoFile(dataurl, filename) {
-    //     let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-    //         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    //     while(n--){
-    //         u8arr[n] = bstr.charCodeAt(n);
-    //     }
-    //     return new File([u8arr], filename, {type:mime});
-    // }
 
     handleSave = data => {
       const img_b64 = this.editor.getImageScaledToCanvas().toDataURL('image/png');
@@ -65,36 +57,6 @@ class Setting extends Component {
       .then(() => {
         this.OnClickOpenModal();
       })
-
-      // console.log(dataURLtoFile(img_b64, this.props.user.uid));
-      //
-      // const the_file = new File([window.atob(png)],  {type: 'image/png', encoding: 'utf-8'});
-      // console.log(the_file);
-
-
-      // firebase.storage().ref().storageRef.child('images/mountains.jpg');
-      // let fr = new FileReader();
-      // fr.onload = function ( oFREvent ) {
-      //     let v = oFREvent.target.result.split(',')[1]; // encoding is messed up here, so we fix it
-      //     v = atob(v);
-      //     let good_b64 = btoa(decodeURIComponent(escape(v)));
-      //     document.getElementById("uploadPreview").src = "data:image/png;base64," + good_b64;
-      // };
-      // fr.readAsDataURL(the_file);
-      // const rect = this.editor.getCroppingRect()
-      // console.log(fr.readAsDataURL(the_file));
-      // console.log(rect);
-
-      // this.setState({
-      //   preview: {
-      //     img,
-      //     rect,
-      //     scale: this.state.scale,
-      //     width: this.state.width,
-      //     height: this.state.height,
-      //     borderRadius: this.state.borderRadius,
-      //   },
-      // })
     }
 
     handleScale = e => {

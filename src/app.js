@@ -33,7 +33,7 @@ const renderApp = () => {
 }
 ReactDOM.render( <AppLoading />, document.getElementById('app') );
 
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 
 
 firebase.auth().onAuthStateChanged((user) => {

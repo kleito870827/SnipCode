@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Highlight from 'react-highlight';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import UserNamePhoto from './UserNamePhoto';
 
@@ -47,6 +48,10 @@ class SnipBox extends Component {
       </div>
         <div className="snip-box__body">
           <div className="snip-box__body__code">
+            <CopyToClipboard text={this.props.code}>
+              <span className="snip-box__body__code__copy-btn">Copy</span>
+            </CopyToClipboard>
+            {/* <input onClick={() => this.copyToClipboard(this.props.code, 'highlightCode')} type="button" value="copy" /> */}
             <Highlight>{this.props.code}</Highlight>
           </div>
 

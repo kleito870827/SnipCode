@@ -8,7 +8,7 @@ export default (snippets, {keyword, category, language}) => {
     if(category.length > 0){
       categoryFilter = category.length && !!snip.category ?
       snip.category.some(r => {
-        return category.indexOf(r) >= 0
+        return category.map((cat) => cat.toLowerCase()).indexOf(r.toLowerCase()) >= 0
       })
       : false;
     }else{

@@ -21,23 +21,17 @@ class Dashboard extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // One possible fix...
     window.matchMedia('(max-width: 700px)').onchange = (e) => {
       if( e.matches ){
         if(this.state.menuLeft === '0' || this.state.snippetsMargin === '300px'){
           this.setState({menuLeft: '-300px', snippetsMargin: '0'})
         }
       } else {
-        if(this.state.menuLeft === '-300px' || this.state.snippetsMargin === '0'){          
+        if(this.state.menuLeft === '-300px' || this.state.snippetsMargin === '0'){
           this.setState({menuLeft: '0', snippetsMargin: '300px'})
         }
       }
     }
-    // if(window.matchMedia('(max-width: 700px)').matches){
-    //     this.setState({menuLeft: '-300px', snippetsMargin: '0'})
-    //   } else {
-    //     this.setState({menuLeft: '0', snippetsMargin: '300px'})
-    //   }
   }
 
   render(){
@@ -45,9 +39,7 @@ class Dashboard extends React.Component {
       <div className="dashboard">
         <div style={{left: this.state.menuLeft}} className="dashboard__filter">
             <div onClick={this.OnClickToggleMenu} className={`dashboard__filter__toggle-menu dashboard__filter__toggle-menu--open`}>
-              {/* <i className="fa fa-arrow-left" aria-hidden="true"></i> */}
               <i className="fa fa-angle-left" aria-hidden="true"></i>
-              {/* <i className="fa fa-chevron-left" aria-hidden="true"></i> */}
             </div>
             <FilterSnip />
         </div>
