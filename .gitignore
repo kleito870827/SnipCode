@@ -1,2 +1,6 @@
 node_modules
 /src/firebase/firebase-dev.js
+public/bundle.js
+public/bundle.js.map
+public/styles.css
+public/styles.css.map
