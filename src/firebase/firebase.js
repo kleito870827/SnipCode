@@ -1,4 +1,4 @@
-import * as firebase from 'firebase-admin';
+import * as firebase from 'firebase';
 
 const config = {
     apiKey: process.env.API_KEY,
@@ -8,6 +8,7 @@ const config = {
     storageBucket: process.env.STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGING_SENDER_ID
 };
+console.log(config);
 
 firebase.initializeApp(config);
 
