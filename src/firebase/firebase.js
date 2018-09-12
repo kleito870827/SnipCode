@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import * as firebase from 'firebase-admin';
 
 const config = {
     apiKey: process.env.API_KEY,
