@@ -59,7 +59,10 @@ export const removeSnip = (id) => ({
 export const fbRemoveSnip = (id) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`user/${uid}/snippet/${id}`).remove().then(() => {
+    return database.ref(`user/${uid}/snippet/${id}`).remove()
+    .then(() => {
+      database.ref(`public/${id}`).remove();
+    }).then(() => {
       dispatch(removeSnip(id));
     });
   }
