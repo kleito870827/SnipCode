@@ -34,7 +34,7 @@ const renderApp = () => {
 ReactDOM.render( <AppLoading />, document.getElementById('app') );
 
 // console.log(process.env.DATA_BASE_URL);
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 
 
 firebase.auth().onAuthStateChanged((user) => {
