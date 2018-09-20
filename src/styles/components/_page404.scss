@@ -1,0 +1,13 @@
+.page404{
+  background-color: #000;
+  height: calc(100vh - 125px);
+  background-image: url('/images/page-404.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  @media (max-width: 800px) {
+    &{
+      background-size: 137%;
+    }
+  }
+}

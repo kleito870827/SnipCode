@@ -5,9 +5,14 @@ import * as currentActions from '../redux/actions/currentSnippet';
 import { fbAddSnip } from '../redux/actions/snippets';
 import { editError, clearError } from '../redux/actions/error';
 import LinkGetTo from './LinkGetTo';
+import Snip from './Spin';
 
 
 class AddSnip extends Component{
+
+  state = {
+    loading: false
+  }
 
   componentWillMount (){
     this.props.clearCurrentSnip();
@@ -61,28 +66,38 @@ class AddSnip extends Component{
     }
   }
 
+  componentWillMount() {
+    this.setState({loading: false});
+  }
+
+  componentWillUnmount() {
+    this.setState({loading: true});
+  }
+
   render(){
     // console.log(this.props.currentSnippet.title);
     return (
       <div>
-        <EditSnipBox
-          OnChangeTitle = {this.OnChangeTitle}
-          currentTitle = {this.props.currentSnippet.title}
-          OnChangePrivacy = {this.OnChangePrivacy}
-          currentPrivacy = {this.props.currentSnippet.privacy}
-          OnChangeCode = {this.OnChangeCode}
-          currentCode = {this.props.currentSnippet.code}
-          OnChangeLanguage = {this.OnChangeLanguage}
-          currentLanguage = {this.props.currentSnippet.currentLanguage}
-          OnKeyDownCategory = {this.OnKeyDownCategory}
-          OnChangeCategory = {this.OnChangeCategory}
-          OnClickAddCategoty = {this.OnClickAddCategoty}
-          OnClickRemoveCategory = {this.OnClickRemoveCategory}
-          currentCategory = {this.props.currentSnippet.currentCategory}
-          category = {this.props.currentSnippet.category}
-          OnClickAddSnip = {this.OnClickAddSnip}
-          error = {this.props.error}
-         />
+        {this.state.loading ? <Snip /> : (
+          <EditSnipBox
+            OnChangeTitle = {this.OnChangeTitle}
+            currentTitle = {this.props.currentSnippet.title}
+            OnChangePrivacy = {this.OnChangePrivacy}
+            currentPrivacy = {this.props.currentSnippet.privacy}
+            OnChangeCode = {this.OnChangeCode}
+            currentCode = {this.props.currentSnippet.code}
+            OnChangeLanguage = {this.OnChangeLanguage}
+            currentLanguage = {this.props.currentSnippet.currentLanguage}
+            OnKeyDownCategory = {this.OnKeyDownCategory}
+            OnChangeCategory = {this.OnChangeCategory}
+            OnClickAddCategoty = {this.OnClickAddCategoty}
+            OnClickRemoveCategory = {this.OnClickRemoveCategory}
+            currentCategory = {this.props.currentSnippet.currentCategory}
+            category = {this.props.currentSnippet.category}
+            OnClickAddSnip = {this.OnClickAddSnip}
+            error = {this.props.error}
+          />
+        )}
 
         <LinkGetTo to="/dashboard" icon="fa-arrow-left" />
       </div>

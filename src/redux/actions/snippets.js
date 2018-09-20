@@ -1,6 +1,7 @@
 import uuid from 'uuid';
 import database, { firebase } from '../../firebase/firebase';
 import moment from 'moment';
+// import {addSnippetAmount} from './auth';
 
 // ADD_SNIP
 export const addSnip = (snippet = {}) => ({
@@ -192,6 +193,8 @@ export const fbSetSnip = () => {
           }).then(() => {
             finishSnippet = [...privateSnippet, ...publicSnippet]
             dispatch(setSnip(finishSnippet));
+            // dispatch(addSnippetAmount(finishSnippet.length));
+            // dispatch(setSnip(finishSnippet.slice(0, 3)));
           })
           // console.log(firebase.auth().currentUser.displayName);
         });

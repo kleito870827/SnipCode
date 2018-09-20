@@ -12,6 +12,7 @@ import PrivateRoute from './PrivateRoute';
 import AddSnip from '../components/AddSnip';
 import EditSnip from '../components/EditSnip';
 import Setting from '../components/Setting';
+import Page404 from '../components/Page404';
 
 export const history = createHistory();
 
@@ -26,6 +27,7 @@ const AppRouter = () => (
         <PrivateRoute path="/addsnip" component={AddSnip} />
         <PrivateRoute path="/edit/:id" component={EditSnip} />
         <Route path="/signup" component={SignUp} />
+        <Route component={Page404} />
       </Switch>
       <Footer />
     </div>

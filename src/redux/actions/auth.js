@@ -1,5 +1,11 @@
 import database, { firebase, googleAuthProvider } from '../../firebase/firebase';
 
+// ADDSNIPPETAMOUNT
+export const addSnippetAmount = (snippet) => ({
+  type: 'ADDSNIPPETAMOUNT',
+  snippet
+})
+
 // AUTHERROR
 export const authError = (error) => ({
   type: 'AUTHERROR',

@@ -2,11 +2,17 @@ const defaultState = {
   uid: '',
   userName: '',
   authError: '',
-  successful: ''
+  successful: '',
+  snippetAmount: 0
 }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case 'ADDSNIPPETAMOUNT':
+      return {
+        ...state,
+        snippetAmount: action.snippet
+      }
     case 'LOGIN':
       return {
         ...state,
