@@ -1,9 +1,9 @@
 {
-  "name": "indecision-app",
+  "name": "snip-code",
   "version": "1.0.0",
-  "description": "Indecision App React",
+  "description": "snip-code App React",
   "main": "index.js",
-  "author": "Alan Espinet",
+  "author": "Yasiel S Caleo",
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.26.0",
